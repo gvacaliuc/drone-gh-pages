@@ -42,6 +42,8 @@ type (
 		TemporaryBase  string
 		PagesDirectory string
 		WorkDirectory  string
+		ForcePush      bool
+		FollowTags     bool
 	}
 
 	Plugin struct {
@@ -182,7 +184,8 @@ func (p Plugin) pushChanges() error {
 	cmd := repo.RemotePush(
 		p.Config.UpstreamName,
 		p.Config.TargetBranch,
-		false,
+		p.Config.ForcePush,
+		p.Config.FollowTags,
 	)
 
 	cmd.Dir = p.Config.WorkDirectory

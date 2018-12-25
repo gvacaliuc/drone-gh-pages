@@ -66,6 +66,16 @@ func main() {
 			EnvVar: "DRONE_REMOTE_URL",
 		},
 		cli.StringFlag{
+			Name:   "git.force-push",
+			Usage:  "force push to remote",
+			EnvVar: "PLUGIN_FORCE_PUSH",
+		},
+		cli.StringFlag{
+			Name:   "git.follow-tags",
+			Usage:  "force push to remote",
+			EnvVar: "PLUGIN_FOLLOW_TAGS",
+		},
+		cli.StringFlag{
 			Name:   "path",
 			Usage:  "git clone path",
 			EnvVar: "DRONE_WORKSPACE",
@@ -74,7 +84,7 @@ func main() {
 			Name:   "netrc.machine",
 			Usage:  "netrc machine",
 			EnvVar: "DRONE_NETRC_MACHINE",
-			Value: "github.com",
+			Value:  "github.com",
 		},
 		cli.StringFlag{
 			Name:   "netrc.username",
@@ -121,6 +131,8 @@ func run(c *cli.Context) error {
 			TargetBranch:   c.String("target-branch"),
 			TemporaryBase:  c.String("temporary-base"),
 			PagesDirectory: c.String("pages-directory"),
+			ForcePush:      c.Bool("git.force-push"),
+			FollowTags:     c.Bool("git.follow-tags"),
 		},
 	}
 
