@@ -28,6 +28,12 @@ func main() {
 			Value:  "origin",
 		},
 		cli.StringFlag{
+			Name:   "source-branch",
+			Usage:  "git branch to pull from",
+			EnvVar: "PLUGIN_SOURCE_BRANCH",
+			Value:  "master",
+		},
+		cli.StringFlag{
 			Name:   "target-branch",
 			Usage:  "git branch to target",
 			EnvVar: "PLUGIN_TARGET_BRANCH",
@@ -72,7 +78,7 @@ func main() {
 		},
 		cli.StringFlag{
 			Name:   "git.follow-tags",
-			Usage:  "force push to remote",
+			Usage:  "git push follow tags",
 			EnvVar: "PLUGIN_FOLLOW_TAGS",
 		},
 		cli.StringFlag{
@@ -128,6 +134,7 @@ func run(c *cli.Context) error {
 		Config: Config{
 			Key:            c.String("ssh-key"),
 			UpstreamName:   c.String("upstream-name"),
+			SourceBranch:   c.String("source-branch"),
 			TargetBranch:   c.String("target-branch"),
 			TemporaryBase:  c.String("temporary-base"),
 			PagesDirectory: c.String("pages-directory"),

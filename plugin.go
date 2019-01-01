@@ -38,6 +38,7 @@ type (
 	Config struct {
 		Key            string
 		UpstreamName   string
+		SourceBranch   string
 		TargetBranch   string
 		TemporaryBase  string
 		PagesDirectory string
@@ -124,7 +125,7 @@ func (p Plugin) cloneTarget() error {
 		"git",
 		"clone",
 		"-b",
-		p.Config.TargetBranch,
+		p.Config.SourceBranch,
 		"--single-branch",
 		p.Repo.Clone,
 		p.Config.WorkDirectory,
